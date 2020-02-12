@@ -1,10 +1,20 @@
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
 
 @Component({
   selector: 'app-root',
-  templateUrl: './app.component.html',
-  styleUrls: ['./app.component.css']
+  template: `<app-test #appTest [idContext]="appTest.componentId + '|' + idContext"></app-test>`
 })
 export class AppComponent {
-  title = 'templatevariable';
+  public idContext: string = "root";
+}
+
+@Component({
+  selector: 'app-test',
+  template: ``
+})
+export class TestComponent {
+  @Input()
+  public idContext: string | null;
+
+  public componentId: string = 'appTestId';
 }
